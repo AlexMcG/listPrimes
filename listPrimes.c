@@ -12,7 +12,7 @@ int main() {
 		
 		//describes program and prompt for input
 		printf("This program lists all the prime numbers in a given range.\n");
-		printf("Enter a positive start and stop value. Stop must be greater than start.\n");
+		printf("Enter a start and stop value greater than one. Stop must be greater than start.\n");
 		printf("Enter i for all primes. Enter q to quit.\n");
 		
 		//get input and check for length
@@ -35,7 +35,7 @@ int main() {
 		//check for non-range options, check for errors, and call listPrimes
 		if (input[0] == 'q' || input[0] == 'Q') return 1;
 		else if (input[0] == 'i' || input[0] == 'I') listPrimes(2, 0);
-		else if (check < 2 || start >= stop || start < 1 || stop < 1 || input == NULL || index >= INPUT_MAX) {
+		else if (check < 2 || start >= stop || start < 2 || stop < 2 || input == NULL || index >= INPUT_MAX) {
 			printf("INPUT ERROR\n");
 			continue;
 		}
@@ -49,10 +49,7 @@ void listPrimes(unsigned long start, unsigned long stop) {
 	unsigned int prime = start;
 	while (prime <= stop || !stop) {
 		int divisor = 2;
-		while (divisor < prime) {
-			if (prime % divisor == 0) break;
-			divisor++;
-		}
+		while (prime % divisor != 0) divisor++;
 		if (divisor == prime) printf("%d ", prime);
 		prime++;
 	}
